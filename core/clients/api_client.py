@@ -66,20 +66,12 @@ class APIClient:
             with allure.step('Updating header with authorization'):
                 self.session.headers.update({"Authorization": f"Bearer {token}"})
 
-    def get_booking_by_id(self):
+    def get_booking_by_id(self, booking_id):
         with allure.step('Getting booking URL'):
-            url = f"{self.base_url}{Endpoints.BOOKING_ENDPOINT}"
+            url = f"{self.base_url}{Endpoints.BOOKING_ENDPOINT}/{booking_id}"
             response = self.session.get(url)
             response.raise_for_status()
         with allure.step('Assert status code'):
             assert response.status_code == 200, f"Expected status 200 but got {response.status_code}"
         return response.status_code
 
-    def get_booking_by_name(self):
-        url = f"{self.base_url}{Endpoints.BOOKING_ENDPOINT}"
-        payload = {"firstname": BookingByName.FIRSTNAME, "lastname": BookingByName.LASTNAME}
-        response = self.session.get(url, params=payload, timeout=Timeouts.TIMEOUT)
-        response.raise_for_status()
-        assert response.status_code == 200, f"Expected status 200 but got {response.status_code}"
-        token = response.json().get("token")
-        self.session.headers.update({"Authorization": f"Bearer {token}"})
