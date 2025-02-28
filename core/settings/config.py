@@ -6,7 +6,3 @@ class Users(Enum):
 
 class Timeouts(Enum):
     TIMEOUT = 5
-
-class BookingByName(Enum):
-    FIRSTNAME = "Sally"
-    LASTNAME = "Brown"
