@@ -13,7 +13,7 @@ def api_client():
     return client
 
 @pytest.fixture()
-def booking_data():
+def booking_dates():
     today = datetime.today()
     checkin_date = today + timedelta(days=10)
     checkout_date = checkin_date + timedelta(days=5)
@@ -37,7 +37,7 @@ def generate_random_booking_data(booking_dates):
         "lastname": lastname,
         "totalprice": totalprice,
         "depositpaid": depositpaid,
-        "booking_dates": booking_dates,
+        "bookingdates": booking_dates,
         "additionalneeds": additionalneeds
     }
 
