@@ -49,7 +49,7 @@ class APIClient:
             url = f"{self.base_url}{Endpoints.PING_ENDPOINT.value}"
             response = self.session.get(url)
             response.raise_for_status()
-        with allure.step('Assert status code'): 
+        with allure.step('Assert status code'):
             assert response.status_code == 201, f"Expected status 201 but got {response.status_code}"
         return response.status_code
 
